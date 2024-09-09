@@ -4,12 +4,12 @@ from django.contrib.auth.models import AbstractUser
 
 from django.db import models
 
-
-# Create your models here.
-
 class Manufacturer(models.Model):
     name = models.CharField(max_length=255, unique=True)
     country = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.name
 
 
 class Car(models.Model):
@@ -26,8 +26,7 @@ class Car(models.Model):
 
 class Driver(AbstractUser):
     license_number = models.CharField(max_length=255, unique=True)
-    username = models.CharField(max_length=255, unique=True)
-    email = models.CharField(max_length=255)
-    password = models.CharField(max_length=255)
-    first_name = models.CharField(max_length=255)
-    last_name = models.CharField(max_length=255)
+
+    class Meta:
+        verbose_name = "Driver"
+        verbose_name_plural = "Drivers"
